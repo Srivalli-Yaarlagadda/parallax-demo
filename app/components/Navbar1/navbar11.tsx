@@ -64,7 +64,7 @@ export default function Navbar11() {
           onClick={closeDropdown}
         />
       )}
-      <header className="fixed inset-x-0 top-0 z-40 flex h-14 md:h-16 items-center justify-between bg-stone-900/90 backdrop-blur-md border-b border-white/10 px-4 md:px-8">
+      <header className={`fixed inset-x-0 top-0 flex h-14 md:h-16 items-center justify-between bg-stone-900/90 backdrop-blur-md border-b border-white/10 px-4 md:px-8 ${menuOpen ? "z-[60]" : "z-40"}`}>
         {/* Left: Logo */}
         <a href="/" className="flex shrink-0 items-center" aria-label="Home">
           <img

@@ -15,8 +15,8 @@ const navItems = [
   "About",
 ];
 
-const easeOpen = [0.33, 1, 0.68, 1] as const;
-const easeClose = [0.4, 0, 0.2, 1] as const;
+const easeOpen = [0.22, 0.61, 0.36, 1] as const; // smooth ease-out
+const easeClose = [0.33, 1, 0.68, 1] as const;
 
 export default function BlobNavbar() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -152,7 +152,7 @@ export default function BlobNavbar() {
         </button>
       </div>
 
-      {/* Mobile menu – overlay + panel (different open vs close animation) */}
+      {/* Mobile menu – overlay + cone-shaped blob (quarter circle) from top-right to bottom-left */}
       <AnimatePresence>
         {menuOpen && (
           <>
@@ -160,48 +160,34 @@ export default function BlobNavbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{
-                duration: 0.35,
-                ease: easeOpen,
-              }}
+              transition={{ duration: 0.5, ease: easeOpen }}
               className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
               onClick={() => setMenuOpen(false)}
               aria-hidden
             />
+            {/* Cone shape: quarter-circle curve growing from top-right toward bottom-left */}
             <motion.div
-              initial={{ x: "100%", opacity: 0.6 }}
+              initial={{ clipPath: "circle(0% at 100% 0%)" }}
               animate={{
-                x: 0,
-                opacity: 1,
-                transition: {
-                  type: "tween",
-                  duration: 0.45,
-                  ease: easeOpen,
-                },
+                clipPath: "circle(200% at 100% 0%)",
+                transition: { type: "tween", duration: 0.9, ease: easeOpen },
               }}
               exit={{
-                x: "100%",
-                opacity: 0.7,
-                transition: {
-                  type: "tween",
-                  duration: 0.28,
-                  ease: easeClose,
-                },
+                clipPath: "circle(0% at 100% 0%)",
+                transition: { type: "tween", duration: 0.5, ease: easeClose },
               }}
-              className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white/95 backdrop-blur-xl border-l border-white/40 shadow-xl lg:hidden flex flex-col"
+              className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/95 backdrop-blur-xl shadow-2xl lg:hidden"
             >
-              <div className="flex justify-end p-4 shrink-0">
-                <button
-                  type="button"
-                  aria-label="Close menu"
-                  onClick={() => setMenuOpen(false)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-2xl font-light leading-none text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
-                >
-                  ×
-                </button>
-              </div>
+              <button
+                type="button"
+                aria-label="Close menu"
+                onClick={() => setMenuOpen(false)}
+                className="absolute right-4 top-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-2xl font-light text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+              >
+                ×
+              </button>
               <motion.nav
-                className="flex flex-1 flex-col pt-4 px-6 pb-8"
+                className="flex flex-col items-center justify-center px-6 pb-8 text-center"
                 initial="hidden"
                 animate="visible"
                 exit="exit"
@@ -209,44 +195,31 @@ export default function BlobNavbar() {
                   hidden: { opacity: 0 },
                   visible: {
                     opacity: 1,
-                    transition: {
-                      staggerChildren: 0.05,
-                      delayChildren: 0.12,
-                    },
+                    transition: { staggerChildren: 0.06, delayChildren: 0.2 },
                   },
-                  exit: {
-                    opacity: 0,
-                    transition: { staggerChildren: 0.03, staggerDirection: -1 },
-                  },
+                  exit: { opacity: 0, transition: { staggerChildren: 0.03, staggerDirection: -1 } },
                 }}
               >
                 <motion.p
-                  variants={{
-                    hidden: { opacity: 0, y: 8 },
-                    visible: { opacity: 1, y: 0 },
-                    exit: { opacity: 0, y: -4 },
-                  }}
-                  transition={{ duration: 0.25 }}
+                  variants={{ hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -4 } }}
+                  transition={{ duration: 0.22 }}
                   className="mb-4 text-xs font-medium uppercase tracking-wider text-slate-500"
                 >
                   Menu
                 </motion.p>
-                <ul className="flex flex-col gap-0.5 list-none p-0 m-0">
+                <ul className="flex flex-col gap-0.5 list-none p-0 m-0 items-center w-full max-w-xs">
                   {navItems.map((item, index) => {
                     const isActive = activeIndex === index;
                     return (
                       <motion.li
                         key={item}
-                        variants={{
-                          hidden: { opacity: 0, x: 16 },
-                          visible: { opacity: 1, x: 0 },
-                          exit: { opacity: 0, x: -12 },
-                        }}
-                        transition={{ duration: 0.28 }}
+                        variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -8 } }}
+                        transition={{ duration: 0.25 }}
+                        className="w-full"
                       >
                         <button
                           onClick={() => handleNavClick(index)}
-                          className={`w-full rounded-full px-4 py-3 text-left text-base font-medium transition-colors ${isActive ? "text-slate-900 font-semibold bg-slate-100" : "text-slate-700 hover:bg-slate-50"}`}
+                          className={`w-full rounded-full px-4 py-3 text-center text-base font-medium transition-colors ${isActive ? "text-slate-900 font-semibold bg-slate-100" : "text-slate-700 hover:bg-slate-50"}`}
                         >
                           {item}
                         </button>
