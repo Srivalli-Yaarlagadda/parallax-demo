@@ -14,10 +14,10 @@ const overlay = {
   close: { duration: 0.25, ease: easeClose },
 };
 
-// First 2% of travel slowly, then rest quickly
+// First 1% of travel slowly, then rest quickly
 const panel = {
   open: {
-    x: ["100%", "98%", "0%"],
+    x: ["100%", "99%", "0%"],
     transition: {
       type: "tween" as const,
       duration: 0.82,
@@ -72,7 +72,7 @@ export default function Navbar9() {
 
   return (
     <>
-      {/* Top bar: light background, logo left, MENU + hamburger right (or CLOSE + X when open) */}
+      {/* Top bar: logo left, MENU + hamburger right (Close is on the panel only) */}
       <header className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between bg-slate-300 backdrop-blur-sm border-b border-slate-200/80 pl-2 pr-5 lg:pl-4 lg:pr-10 py-3">
         <a href="/" className="flex shrink-0 items-center -my-1 ml-12" aria-label="Home">
           <img src="/logoeg.png" alt="" className="h-12 w-auto object-contain block" />
@@ -84,33 +84,8 @@ export default function Navbar9() {
           onClick={() => setMenuOpen((o) => !o)}
           className="flex shrink-0 items-center gap-3 text-slate-800 font-normal tracking-wide hover:text-slate-600 transition-colors"
         >
-          <AnimatePresence mode="wait">
-            {menuOpen ? (
-              <motion.span
-                key="close"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="flex items-center gap-3"
-              >
-                <span className="text-lg uppercase tracking-widest font-normal">Close</span>
-                <span className="text-3xl font-normal leading-none">×</span>
-              </motion.span>
-            ) : (
-              <motion.span
-                key="menu"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="flex items-center gap-3"
-              >
-                <span className="text-lg uppercase tracking-widest font-normal">Menu</span>
-                <span className="text-slate-800 text-2xl leading-none" aria-hidden="true">☰</span>
-              </motion.span>
-            )}
-          </AnimatePresence>
+          <span className="text-lg uppercase tracking-widest font-normal">Menu</span>
+          <span className="text-slate-800 text-2xl leading-none" aria-hidden="true">☰</span>
         </button>
       </header>
 
