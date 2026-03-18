@@ -11,11 +11,12 @@ import ScrollToTop from "./components/ScrollToTopBtn/ScrollToTop";
 import CollectionSection from "./components/Parallaxforsections/collections";
 import Contact from "./components/contact";
 import Timeline from "./components/HorizontalTimeline/timeline";
+
 export default function Home() {
   return (
     <>
-    {/* <Navbar /> */}
-   <Navbar1 />
+      {/* <Navbar /> */}
+      <Navbar1 />
       <HeroSection />
       <Timeline />
       <AnimatedButtons />
