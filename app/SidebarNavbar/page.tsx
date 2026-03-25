@@ -67,6 +67,7 @@
 //     </SidebarNavbar>
 //   );
 // }
+
 "use client";
 
 import { SidebarNavbar } from "../components/SidebarNavbar";
@@ -84,28 +85,28 @@ export default function Page() {
       }
 
       mainLinks={[
-        { label: "Home", preview: "Welcome Home 🏠", href: "/" },
-        { label: "About us", preview: "Know about us", href: "/" },
-        { label: "Log book", preview: "View logs", href: "/" },
-        { label: "Contact", preview: "Say hii 👋", href: "/" },
+        { label: "Home", preview: "Welcome Home 🏠" },
+        { label: "About us", preview: "Know about us" },
+        { label: "Log book", preview: "View logs" },
+        { label: "Contact", preview: "Say hii 👋" },
       ]}
 
       secondaryTitle="Our Things"
 
       secondaryLinks={[
-        { label: "Rooms", preview: "Explore rooms 🛏️", href: "/" },
-        { label: "A Bunch of Things", preview: "Discover more ✨", href: "/" },
+        { label: "Rooms", preview: "Explore rooms 🛏️" },
+        { label: "A Bunch of Things", preview: "Discover more ✨" },
       ]}
 
       socialTitle="Follow us"
 
       socialItems={[
-        { label: "Discord", icon: <FaDiscord size={22} />, href: "/" },
-        { label: "TikTok", icon: <SiTiktok size={22} />, href: "/" },
-        { label: "Instagram", icon: <FaInstagram size={22} />, href: "/" },
-        { label: "Twitter", icon: <FaTwitter size={22} />, href: "/" },
-        { label: "YouTube", icon: <FaYoutube size={22} />, href: "/" },
-        { label: "Threads", icon: <SiThreads size={22} />, href: "/" },
+        { label: "Discord", icon: <FaDiscord size={22} /> },
+        { label: "TikTok", icon: <SiTiktok size={22} /> },
+        { label: "Instagram", icon: <FaInstagram size={22} /> },
+        { label: "Twitter", icon: <FaTwitter size={22} /> },
+        { label: "YouTube", icon: <FaYoutube size={22} /> },
+        { label: "Threads", icon: <SiThreads size={22} /> },
       ]}
 
       closeButton={(close) => (
