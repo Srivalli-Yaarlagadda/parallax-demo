@@ -5,6 +5,7 @@ export const CASCADE_MENU_FINAL_BLUE = "#3273dc";
 
 /** Default wipe sequence ending on `CASCADE_MENU_FINAL_BLUE` */
 export const DEFAULT_CASCADE_LAYER_COLORS: readonly string[] = [
+  CASCADE_MENU_FINAL_BLUE,
   "#efe3d0",
   "#f08a22",
   "#6BB3F0",
