@@ -136,21 +136,43 @@ export function MuseumSlideNavbar({
             "lg:grid-cols-8 lg:gap-6 lg:place-items-center lg:min-h-[40vh]"
           )}
         >
-          {links.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="no-underline flex justify-center"
-            >
-              <Typography
-                variant="h2"
-                className="font-medium tracking-wide"
-              >
-                {item.label}
-              </Typography>
-            </Link>
-          ))}
+         {links.map((item) => (
+  <Link
+    key={item.href}
+    href={item.href}
+    onClick={() => setOpen(false)}
+    className="group no-underline flex justify-center overflow-hidden"
+  >
+    <span className="relative h-[1.5em] overflow-hidden">
+      
+      {/* TOP TEXT (goes up on hover) */}
+      <Typography
+        variant="h2"
+        className="
+          block font-medium tracking-wide
+          transition-transform duration-300 ease-in-out
+          group-hover:-translate-y-full
+        "
+      >
+        {item.label}
+      </Typography>
+
+      {/* BOTTOM TEXT (comes from bottom) */}
+      <Typography
+        variant="h2"
+        className="
+          absolute left-0 top-full
+          font-medium tracking-wide
+          transition-transform duration-300 ease-in-out
+          group-hover:-translate-y-full
+        "
+      >
+        {item.label}
+      </Typography>
+
+    </span>
+  </Link>
+))}
         </div>
       </div>
     </header>
