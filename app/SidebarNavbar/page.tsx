@@ -79,23 +79,23 @@ export default function Page() {
   return (
     <SidebarNavbar
       trigger={
-        <div className="bg-blue-700 text-white px-5 py-2 rounded-full">
+        <div className="bg-blue-900 text-white px-5 py-2 rounded-full cursor-pointer transition-colors duration-300 hover:bg-pink-500 active:bg-pink-500">
           ☰ Menu
         </div>
       }
 
       mainLinks={[
-        { label: "Home", preview: "Welcome Home 🏠" },
-        { label: "About us", preview: "Know about us" },
-        { label: "Log book", preview: "View logs" },
-        { label: "Contact", preview: "Say hii 👋" },
+        { label: "Home", preview: "> Welcome Home 🏠" },
+        { label: "About us", preview: "> Know about us" },
+        { label: "Log book", preview: "> View logs" },
+        { label: "Contact", preview: "> Say hii 👋" },
       ]}
 
       secondaryTitle="Our Things"
 
       secondaryLinks={[
-        { label: "Rooms", preview: "Explore rooms 🛏️" },
-        { label: "A Bunch of Things", preview: "Discover more ✨" },
+        { label: "Rooms", preview: "> Explore rooms 🛏️" },
+        { label: "A Bunch of Things", preview: "> Discover more ✨" },
       ]}
 
       socialTitle="Follow us"
@@ -112,7 +112,7 @@ export default function Page() {
       closeButton={(close) => (
         <button
           onClick={close}
-          className="bg-blue-900 text-white px-5 py-2 rounded-full"
+          className="bg-blue-900 text-white px-5 py-2 rounded-full cursor-pointer transition-colors duration-300 hover:bg-pink-500 active:bg-pink-500"
         >
           ✕ Close
         </button>
